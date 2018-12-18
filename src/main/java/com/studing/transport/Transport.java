@@ -2,17 +2,25 @@ package com.studing.transport;
 
 import com.studing.detail.Engine;
 import com.studing.detail.Seat;
+import com.studing.detail.Wheel;
 
-public abstract class Transport implements ITransport {
+public class Transport implements ITransport {
 
     private Engine engine;
     private Seat seat;
+    private Wheel wheel;
     private boolean isMoving;
-    protected String transportName;
+    private String transportName;
 
-    public Transport(Engine engine, Seat seat) {
+    public Transport(Engine engine, Seat seat, Wheel wheel, String transportName) {
         this.engine = engine;
         this.seat = seat;
+        this.wheel = wheel;
+        this.transportName = transportName;
+    }
+
+    public Wheel getWheel() {
+        return wheel;
     }
 
     public Engine getEngine() {
@@ -49,8 +57,8 @@ public abstract class Transport implements ITransport {
         }
     }
 
-    protected Boolean isCompleted() {
-        return engine != null && seat != null;
+    private Boolean isCompleted() {
+        return engine != null && seat != null && wheel != null;
     }
 
 }
