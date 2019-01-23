@@ -4,7 +4,7 @@ import com.studing.detail.Engine;
 import com.studing.detail.Seat;
 import com.studing.detail.Wheel;
 
-public class Transport implements ITransport {
+public class Transport implements ITransport, Cloneable {
 
     private Engine engine;
     private Seat seat;
@@ -17,6 +17,14 @@ public class Transport implements ITransport {
         this.seat = seat;
         this.wheel = wheel;
         this.transportName = transportName;
+    }
+
+    public Transport(Transport transport) {
+        this.transportName = transport.transportName;
+        this.wheel = transport.wheel;
+        this.isMoving = transport.isMoving;
+        this.engine = transport.engine;
+        this.seat = transport.seat;
     }
 
     public Wheel getWheel() {
@@ -55,6 +63,10 @@ public class Transport implements ITransport {
         } else {
             System.out.println("Already stopped!");
         }
+    }
+
+    public ITransport clone() {
+        return new Transport(this);
     }
 
     private Boolean isCompleted() {
